@@ -4,5 +4,8 @@ const fetchPopularCities = async () => {
     return popularCities
 }
 
+const setCityCookie = (city)=>{
+    document.cookie = `city=${city}; path=/`
+}
 
-export {fetchPopularCities};
+export {fetchPopularCities,setCityCookie};

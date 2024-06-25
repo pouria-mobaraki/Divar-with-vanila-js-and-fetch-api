@@ -8,4 +8,18 @@ const setCityCookie = (city)=>{
     document.cookie = `city=${city}; path=/`
 }
 
-export {fetchPopularCities,setCityCookie};
+const getCityCookie = () => {
+const cookieName = "city="
+const cookiesArray = document.cookie.split('city; ')
+
+let result = null
+
+cookiesArray.forEach((cookie)=>{
+if(cookie.indexOf(cookieName)===0){
+result = cookie.substring(cookieName.length)
+}
+})
+return result
+}
+
+export {fetchPopularCities,setCityCookie,getCityCookie};

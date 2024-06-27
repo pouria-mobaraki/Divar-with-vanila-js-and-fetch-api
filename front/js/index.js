@@ -1,6 +1,7 @@
-import { fetchPopularCities,setCityCookie,getCityCookie } from "./utils/cities.js";
+import { fetchPopularCities,setCityCookie,getCityCookie, fetchCities } from "./utils/cities.js";
 
 const popularCitiesParent = document.querySelector('.main__cities-list .row')
+const cityInputSearch = document.querySelector('.main__input')
 
 const cityClickHandler = (event,city)=>{
     event.preventDefault()
@@ -27,7 +28,13 @@ if(cityCookie){
 }
 }
 
+const citySearchHandler =(event)=>{
+  console.log(event.target.value);
+}
+
 window.cityClickHandler = cityClickHandler
+
+cityInputSearch.addEventListener('keyup',(event)=>citySearchHandler(event))
 
 window.addEventListener('load',async () => {
 
@@ -35,5 +42,6 @@ const popularCities = await fetchPopularCities()
 showPopularCities(popularCities)
 const cityCookie = getCityCookie();
 loadCityPost(cityCookie)
+const cities = await fetchCities()
 
 })

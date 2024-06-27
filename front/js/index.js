@@ -2,6 +2,10 @@ import { fetchPopularCities,setCityCookie,getCityCookie, fetchCities } from "./u
 
 const popularCitiesParent = document.querySelector('.main__cities-list .row')
 const cityInputSearch = document.querySelector('.main__input')
+const citiesSearchResult = document.querySelector('.search-result-cities')
+
+let cities= null
+ 
 
 const cityClickHandler = (event,city)=>{
     event.preventDefault()
@@ -30,9 +34,29 @@ if(cityCookie){
 
 const citySearchHandler =(event)=>{
   console.log(event.target.value);
+  const citySearchTitle = event.target.value
+
+  if(citySearchTitle.trim()){
+    const citiesResult = cities.filter((city)=>city.name.startsWith(citySearchTitle))
+
+    citiesSearchResult.classList.add('active')
+    citiesSearchResult.innerHTML=""
+    citiesResult.forEach((city)=>{
+    citiesSearchResult.insertAdjacentHTML('beforeend',`
+    <li>${city.name}</li>`)
+    })
+  }else{
+    citiesSearchResult.classList.remove('active')
+   
+  }
+ 
+
+
+  
 }
 
 window.cityClickHandler = cityClickHandler
+
 
 cityInputSearch.addEventListener('keyup',(event)=>citySearchHandler(event))
 
@@ -42,6 +66,6 @@ const popularCities = await fetchPopularCities()
 showPopularCities(popularCities)
 const cityCookie = getCityCookie();
 loadCityPost(cityCookie)
-const cities = await fetchCities()
+cities = await fetchCities()
 
 })

@@ -1,6 +1,8 @@
 import { getAllCities } from "../../utils/shared.js";
 
+const loadingContainer = document.querySelector('#loading-container')
 window.addEventListener("load", () => {
+  loadingContainer.style.display ="none"
   getAllCities().then((response) => {
     const popularCitiesContainer = document.querySelector("#popular-cities");
     const popularCities = response.data.cities.filter((city) => city.popular);

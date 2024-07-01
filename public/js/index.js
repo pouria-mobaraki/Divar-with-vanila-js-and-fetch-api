@@ -1,4 +1,5 @@
 import { getAllCities } from "../../utils/shared.js";
+import { saveInLocalStorage } from "../../utils/utils.js";
 
 const loadingContainer = document.querySelector('#loading-container')
 
@@ -19,7 +20,7 @@ window.addEventListener("load", () => {
         serachResult.innerHTML=''
         searchResultCities.forEach(city => {
           serachResult.insertAdjacentHTML('beforeend',`
-            <li>${city.name}</li>
+            <li onclick="cityClickHandler('${city.name}','${city.id}')">${city.name}</li>
             `)
         })
        }else {
@@ -40,11 +41,16 @@ window.addEventListener("load", () => {
       popularCitiesContainer.insertAdjacentHTML(
         "beforeend",
     `
-        <li class="main__cities-item">
+        <li class="main__cities-item" onclick="cityClickHandler('${city.name}','${city.id}')">
             <p class="main__cities-link">${city.name}</p>
         </li>
       `
       );
     });
+    window.cityClickHandler = (cityName,cityId)=> {
+      saveInLocalStorage('city',{name:cityName , id:cityId})
+      location.href = '/pages/post.html'
+    }
+
   });
 });

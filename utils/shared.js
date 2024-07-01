@@ -13,7 +13,6 @@ const getAndShowSocials = async ()=> {
     const socialsResponse = await res.json()
     
     socialsResponse.data.socials.forEach(social => {
-        console.log(socialsResponse.data.socials);
         socialMediaContainer.insertAdjacentHTML('beforeend',`
     <a href="" class="sidebar__icon-link">
      <img  width="18px" height="18px" alt="${social.name}" href="${social.link}" src="${social.icon}"  class="sidebar__icon bi bi-twitter" />

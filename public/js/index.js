@@ -22,6 +22,12 @@ window.addEventListener("load", () => {
             <li>${city.name}</li>
             `)
         })
+       }else {
+        serachResult.innerHTML=''
+        serachResult.insertAdjacentHTML('beforeend',`
+          <img src="https://support-faq.divarcdn.com/web/2024/03/static/media/magnifier.7f88b2e3f8ae30f4333986d0b0fbcf1d.svg" />
+              <p class="empty">نتیجه‌ای برای جستجوی شما پیدا نشد.</p>
+          `)
        }
 
      }else{

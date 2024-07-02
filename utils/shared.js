@@ -22,8 +22,16 @@ const getAndShowSocials = async ()=> {
 
 }
 
+const getPosts = async (citiesIDS)=>{
+const res = await fetch(`${baseUrl}/v1/post/?city=${citiesIDS}`);
+const posts = await res.json()
+
+return posts
+}
+
 export {
     baseUrl,
     getAllCities,
     getAndShowSocials,
+    getPosts,
 }

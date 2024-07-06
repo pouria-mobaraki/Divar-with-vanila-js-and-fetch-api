@@ -1,5 +1,5 @@
 import { getPosts } from "../../utils/shared.js"
-import { getFromLocalStorage } from "../../utils/utils.js"
+import { getFromLocalStorage ,addParamToUrl} from "../../utils/utils.js"
 import { baseUrl } from "../../utils/shared.js"
 import { getPostCategories } from "../../utils/shared.js"
 
@@ -68,6 +68,10 @@ console.log('log');
        }
     }
 
+    window.categoryClickHandler = (categoryId) =>{
+        addParamToUrl('categoryId',categoryId)
+    }
+
     getPostCategories().then((categories)=>{
     const categoriesContainer = document.querySelector('#categories-container')
     loadingContainer.style.display='none'
@@ -78,7 +82,7 @@ console.log('log');
           "beforeend",
           `
             <div class="sidebar__category-link" id="category-${category._id}">
-              <div class="sidebar__category-link_details">
+              <div class="sidebar__category-link_details" onclick = "categoryClickHandler('${category._id}')">
                 <i class="sidebar__category-icon bi bi-house"></i>
                 <p>${category.title}</p>
               </div>

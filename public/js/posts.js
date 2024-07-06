@@ -1,6 +1,7 @@
 import { getPosts } from "../../utils/shared.js"
 import { getFromLocalStorage } from "../../utils/utils.js"
 import { baseUrl } from "../../utils/shared.js"
+import { getPostCategories } from "../../utils/shared.js"
 
 
 
@@ -66,4 +67,27 @@ console.log('log');
         postContainer.innerHTML = '<p class="empty">اگهی یافت نشد</p>'
        }
     }
+
+    getPostCategories().then((categories)=>{
+    const categoriesContainer = document.querySelector('#categories-container')
+    loadingContainer.style.display='none'
+    categoriesContainer.innerHTML =''
+    categories.forEach((category) => {
+        console.log(category);
+        categoriesContainer.insertAdjacentHTML(
+          "beforeend",
+          `
+            <div class="sidebar__category-link" id="category-${category._id}">
+              <div class="sidebar__category-link_details">
+                <i class="sidebar__category-icon bi bi-house"></i>
+                <p>${category.title}</p>
+              </div>
+            </div>
+          `
+        );
+      });
+
+
+
+    })
 })

@@ -1,5 +1,5 @@
 import { getPosts } from "../../utils/shared.js"
-import { getFromLocalStorage ,addParamToUrl} from "../../utils/utils.js"
+import { getFromLocalStorage ,addParamToUrl, calcuteRelativetimeDifference} from "../../utils/utils.js"
 import { baseUrl } from "../../utils/shared.js"
 import { getPostCategories } from "../../utils/shared.js"
 
@@ -22,6 +22,7 @@ console.log('log');
        const postContainer = document.querySelector('#posts-container')
        if(posts.length){
         posts.forEach(post => {
+          const date = calcuteRelativetimeDifference(post.createdAt)
             postContainer.insertAdjacentHTML('beforeend',`
                 <div class="col-4">
               <a href="post.html/id=${post._id}" class="product-card">
@@ -40,7 +41,7 @@ console.log('log');
                           : post.price.toLocaleString() + " تومان"
                       }
                     </span>
-                    <span class="product-card__time">Date</span>
+                    <span class="product-card__time">${date}</span>
                   </div>
                 </div>
                 <div class="product-card__left">

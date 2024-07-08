@@ -15,8 +15,23 @@ const addParamToUrl = (param,value)=>{
     location.href = url.toString()
 }
 
+const calcuteRelativetimeDifference = (createdAt) => {
+const currentTime = new Date()
+const createdTime = new Date(createdAt)
+const timeDifference = currentTime - createdTime
+const hours = Math.floor(timeDifference/(60*60*1000))
+const days = Math.floor(hours/24)
+if(hours<24){
+return hours + " ساعت پیش"
+}else{
+    return days + 'روز قبل'
+}
+
+
+}
 export {
     saveInLocalStorage,
     getFromLocalStorage,
     addParamToUrl,
+    calcuteRelativetimeDifference,
 }

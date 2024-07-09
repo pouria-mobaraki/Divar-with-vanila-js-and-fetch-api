@@ -1,13 +1,17 @@
 import { getPosts } from "../../utils/shared.js"
-import { getFromLocalStorage ,addParamToUrl, calcuteRelativetimeDifference} from "../../utils/utils.js"
+import { getFromLocalStorage ,
+  addParamToUrl,
+   calcuteRelativetimeDifference,
+    getUrlParam} from "../../utils/utils.js"
 import { baseUrl } from "../../utils/shared.js"
 import { getPostCategories } from "../../utils/shared.js"
 
 
 
 window.addEventListener('load',()=>{
+  const categoryId = getUrlParam('categoryId')
     const loadingContainer = document.querySelector('#loading-container')
-console.log('log');
+console.log('cat'+categoryId);
     const cities = getFromLocalStorage('cities')
     console.log(cities);
     getPosts(cities[0].id).then(response=>{
@@ -77,7 +81,13 @@ console.log('log');
     const categoriesContainer = document.querySelector('#categories-container')
     loadingContainer.style.display='none'
     categoriesContainer.innerHTML =''
-    categories.forEach((category) => {
+
+    if(categoryId){
+     const categoryInfos = categories.filter((category)=>category._id = categoryId)
+     console.log( categoryInfos );
+    }else{
+
+      categories.forEach((category) => {
         console.log(category);
         categoriesContainer.insertAdjacentHTML(
           "beforeend",
@@ -90,7 +100,12 @@ console.log('log');
             </div>
           `
         );
-      });
+      }); 
+    
+
+    }
+
+  
 
 
 

@@ -85,6 +85,31 @@ console.log('cat'+categoryId);
     if(categoryId){
      const categoryInfos = categories.filter((category)=>category._id = categoryId)
      console.log( categoryInfos );
+
+    if(!categoryInfos.length){
+
+    }else{
+      categoryInfos.forEach((category)=>{
+      categoriesContainer.insertAdjacentHTML('beforeend',`
+                      <div class="all-categories">
+                <p>همه اگهی ها</p>
+                <i class="bi bi-arrow-right"></i>
+              </div>
+
+              <div class="sidebar__category-link active-category" href="#">
+                <div class="sidebar__category-link_details">
+                  <i class="sidebar__category-icon bi bi-house"></i>
+                  <p>${category.title}</p>
+                </div>
+                <ul class="subCategory-list">
+                  ${category.subCategories.map(createSubCategoryHtml).join("")}
+                </ul>
+              </div>
+
+        `)
+      })
+    }
+
     }else{
 
       categories.forEach((category) => {
@@ -105,9 +130,16 @@ console.log('cat'+categoryId);
 
     }
 
-  
-
-
-
     })
+
+
+    const createSubCategoryHtml = (subCategory) => {
+      return `
+        <li class="${categoryId === subCategory._id ? "active-subCategory" : ""}">
+          ${subCategory.title}
+        </li>
+      `;
+    };
+    
+
 })

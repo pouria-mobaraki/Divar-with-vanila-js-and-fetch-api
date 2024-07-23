@@ -75,6 +75,7 @@ console.log('cat'+categoryId);
 
     window.categoryClickHandler = (categoryId) =>{
         addParamToUrl('categoryId',categoryId)
+        console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
     }
 
     getPostCategories().then((categories)=>{
@@ -87,7 +88,7 @@ console.log('cat'+categoryId);
      console.log( categoryInfos );
 
     if(!categoryInfos.length){
-
+     const subCategory = findSubCategoryById(categories,categoryId)
     }else{
       categoryInfos.forEach((category)=>{
       categoriesContainer.insertAdjacentHTML('beforeend',`
@@ -135,11 +136,19 @@ console.log('cat'+categoryId);
 
     const createSubCategoryHtml = (subCategory) => {
       return `
-        <li class="${categoryId === subCategory._id ? "active-subCategory" : ""}">
+        <li class="${categoryId === subCategory._id ? "active-subCategory" : ""}"
+         onclick="categoryClickHandler('${subCategory._id}')">
           ${subCategory.title}
         </li>
       `;
     };
     
+
+    // const findSubCategoryById = (categories,categoryId)=>{
+    //  const allSubCategory = categories.map(category=>category.subCategories)
+    //  console.log('allsub',allSubCategory);
+    // }
+
+
 
 })

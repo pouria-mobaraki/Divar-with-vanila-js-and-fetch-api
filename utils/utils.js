@@ -20,7 +20,7 @@ const urlParams = new URLSearchParams(location.search)
  return urlParams.get(param)
 }
 
-const calcuteRelativetimeDifference = (createdAt) => {
+const calcuteRelativeTimeDifference = (createdAt) => {
 const currentTime = new Date()
 const createdTime = new Date(createdAt)
 const timeDifference = currentTime - createdTime
@@ -39,5 +39,5 @@ export {
     getFromLocalStorage,
     addParamToUrl,
     getUrlParam,
-    calcuteRelativetimeDifference,
+    calcuteRelativeTimeDifference,
 }
